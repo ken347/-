@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/jquery.fullPage.css'>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body translate="no">
+    <div id="homepage">
+        <section id="aboutUs" class="background section">
+            <div class="content-wrapper bgpaper centered">
+                <h1>關於我們</h1>
+            </div>
+        </section>
+        <section class="background section" id="news">
+            <div class="content-wrapper centered">
+                <h1>最新消息</h1>
+            </div>
+        </section>
+        <section id="product" class="background section">
+            <div class="content-wrapper centered">
+                <h1>產品導覽</h1>
+            </div>
+        </section>
+        <section id="service" class="background section">
+            <div class="content-wrapper centered">
+                <h1>服務</h1>
+            </div>
+        </section>
+        <section id="contact" class="background section">
+            <div class="content-wrapper centered">
+                <h1>聯絡我們</h1>
+            </div>
+        </section>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/vendors/jquery.easings.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/vendors/scrolloverflow.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/jquery.fullPage.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            $('#homepage').fullpage({
+                scrollingSpeed: 1000,
+                autoScrolling: true,
+                fitToSection: true,
+                fitToSectionDelay: 1000,
+                anchors: ['about', 'news', 'product', 'service', 'contact'],
+                sectionsColor: ['#2F4F4F', '#556B2F', '	#808000', '#006400', '#228B22'],
+                verticalCentered: false,
+                navigation: true,
+                navigationPosition: 'right',
+                navigationTooltips: ['關於我們', '最新消息', '產品導覽', '服務', '聯絡我們'],
+                responsiveWidth: 900,
+                onLeave: function (index, nextIndex, direction) {
+                    if (direction == "up") {
+                        $(".section").removeClass("down");
+                        $(".section").removeClass("next");
+                        $(".section").removeClass("prev");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").addClass("up");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").next().addClass("next up");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").prev().addClass("prev up");
+                    } else {
+                        $(".section").removeClass("up");
+                        $(".section").removeClass("next");
+                        $(".section").removeClass("prev");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").addClass("down");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").next().addClass("next down");
+                        $("#homepage .section:nth-child(" + nextIndex + ")").prev().addClass("prev down");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
